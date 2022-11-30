@@ -1,37 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
-function Nav() {
-const categories = [
-    {
-        name:"About me",
-        description:"A small descriptive paragraph of who I am and how long i've been coding"
-    },
-    {
-        name:"Portfolio",
-        description:"A collection of some of my past projects and challenges that I have fully completed"
-    },
-    {
-        name:"Resume",
-        description:"My resume"
-    }
-]
-function categorySelected(name){
-    console.log(`${name} clicked`)
-}
+function Nav(props) {
+const {
+    categories = [],
+    setCurrentCategory,
+    currentCategory,
+} = props
+
+useEffect(() => {
+    document.title = capitalizeFirstLetter(currentCategory.name);
+},[currentCategory]);
 return(
 
-<header>
+<header className="flex-row px-1">
     <h2>
         <a href="/">
-        <span role="img" aria-label="camera"> 📸</span> Daniel's Portfolio
+        <span role="img" aria-label="laptop">🧑🏽‍💻</span> Daniel's Portfolio
         </a>
     </h2>
 <nav>
     <ul className="flex-row">
         {categories.map((category) => (
-        <li className="mx-1" key={category.name} >
-            <span onClick={() => categorySelected(category.name)} >
-                {category.name}
+        <li className={`mx-1 ${currentCategory.name === category.name && 'navActive'}`} key={category.name} >
+            <span onClick={() => {setCurrentCategory(category)}} >
+                {capitalizeFirstLetter(category.name)}
             </span>
         </li>
         ))}
