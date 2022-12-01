@@ -1,16 +1,8 @@
-import React, { useEffect } from 'react';
-import { capitalizeFirstLetter } from "../../utils/helpers";
+import React from 'react';
 
-function Nav(props) {
-const {
-    categories = [],
-    setCurrentCategory,
-    currentCategory,
-} = props
 
-useEffect(() => {
-    document.title = capitalizeFirstLetter(currentCategory.name);
-},[currentCategory]);
+function Nav() {
+
 return(
 
 <header className="flex-row px-1">
@@ -21,15 +13,25 @@ return(
     </h2>
 <nav>
     <ul className="flex-row">
-        {categories.map((category) => (
-        <li className={`mx-1 ${currentCategory.name === category.name && 'navActive'}`} key={category.name} >
-            <span onClick={() => {setCurrentCategory(category)}} >
-                {capitalizeFirstLetter(category.name)}
-            </span>
+        <li className="mx-2">
+            <a href="#about">
+                About me
+            </a>
         </li>
-        ))}
-        <li>
-            <span>Contact</span>
+        <li className="mx-2">
+            <a href="#projects">
+                Projects
+            </a>
+        </li>
+        <li className="mx-2">
+            <a href="#resume"> 
+                Resume 
+            </a>
+        </li>
+        <li className="mx-2">
+            <a href="#contact">
+                Contact
+            </a>
         </li>
     </ul>
 </nav>
