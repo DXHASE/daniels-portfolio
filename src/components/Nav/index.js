@@ -20,7 +20,7 @@ return(
         </li>
         <li className="mx-2">
             <a href="#projects">
-                Projects
+                Portfolio
             </a>
         </li>
         <li className="mx-2">
